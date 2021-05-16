@@ -1,3 +1,9 @@
+export interface Brand {
+  _id?: string
+  title: string
+  main: boolean
+}
+
 export interface BrandState {
   brands: any
   isLoading: boolean
