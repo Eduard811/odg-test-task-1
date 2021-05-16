@@ -37,3 +37,7 @@ export const fetchBrandsAC = () => async (dispatch: Dispatch<BrandAction>) => {
 export const toggleIsOpenAC = (group: string) => (dispatch: Dispatch<BrandAction>) => {
   dispatch({ type: BrandActionTypes.TOGGLE_IS_OPEN, group })
 }
+
+export const sortByAzOrZaAC = () => (dispatch: Dispatch<BrandAction>) => {
+  dispatch({ type: BrandActionTypes.SORT_BY_AZ_OR_ZA })
+}

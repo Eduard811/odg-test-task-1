@@ -1,10 +1,10 @@
-import { useEffect, useRef, createRef } from 'react'
+import { useEffect, useRef, createRef, useState } from 'react'
 import { useActions } from './hooks/useAction'
 import { useTypedSelector } from './hooks/useTypedSelector'
 
 function App() {
-  const { fetchBrandsAC, toggleIsOpenAC } = useActions()
-  const { brands, isLoading, error } = useTypedSelector((state) => state.brand)
+  const { fetchBrandsAC, toggleIsOpenAC, sortByAzOrZaAC } = useActions()
+  const { brands, isLoading, error, sort } = useTypedSelector((state) => state.brand)
 
   useEffect(() => {
     fetchBrandsAC()
@@ -20,6 +20,7 @@ function App() {
 
   return (
     <div>
+      <button onClick={sortByAzOrZaAC}>{sort ? 'Z-A' : 'A-Z'}</button>
       {brands.map((el: any[]) => (
         <div key={el[0].group}>
           <div>
@@ -48,7 +49,6 @@ function App() {
                       <div key={brand._id}>{brand.title + ' ' + `(main: ${brand.main})`}</div>
                     ))}
             </div>
-            {!el[0].isOpen && el[1].length > 5 && <span>...</span>}
           </div>
         </div>
       ))}

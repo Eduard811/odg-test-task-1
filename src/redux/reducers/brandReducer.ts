@@ -4,6 +4,7 @@ const initialState: BrandState = {
   brands: [],
   isLoading: true,
   error: null,
+  sort: false,
 }
 
 export const brandReducer = (state = initialState, action: BrandAction): BrandState => {
@@ -26,6 +27,12 @@ export const brandReducer = (state = initialState, action: BrandAction): BrandSt
             el[0].isOpen = !el[0].isOpen
           }
         }),
+      }
+    case BrandActionTypes.SORT_BY_AZ_OR_ZA:
+      return {
+        ...state,
+        sort: !state.sort,
+        brands: [...state.brands].reverse(),
       }
     default:
       return state
