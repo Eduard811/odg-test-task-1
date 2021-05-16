@@ -1,12 +1,7 @@
-import { useEffect, useRef, createRef, useState } from 'react'
+import { useEffect } from 'react'
 import { useActions } from './hooks/useAction'
 import { useTypedSelector } from './hooks/useTypedSelector'
-
-interface Brand {
-  _id: string
-  title: string
-  main: boolean
-}
+import { Brand } from './types/brand'
 
 function App() {
   const { fetchBrandsAC, toggleIsOpenAC, sortByAzOrZaAC } = useActions()
