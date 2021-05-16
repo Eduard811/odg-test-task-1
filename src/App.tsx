@@ -2,6 +2,12 @@ import { useEffect, useRef, createRef, useState } from 'react'
 import { useActions } from './hooks/useAction'
 import { useTypedSelector } from './hooks/useTypedSelector'
 
+interface Brand {
+  _id: string
+  title: string
+  main: boolean
+}
+
 function App() {
   const { fetchBrandsAC, toggleIsOpenAC, sortByAzOrZaAC } = useActions()
   const { brands, isLoading, error, sort } = useTypedSelector((state) => state.brand)
@@ -32,20 +38,20 @@ function App() {
             </button>
             <div>
               {el[0].isOpen
-                ? el[1].map((brand: any) => (
+                ? el[1].map((brand: Brand) => (
                     <div key={brand._id}>{brand.title + ' ' + `(main: ${brand.main})`}</div>
                   ))
-                : el[1].some((brand: any) => brand.main === true)
+                : el[1].some((brand: Brand) => brand.main === true)
                 ? el[1]
-                    .filter((item: any) => item.main === true)
+                    .filter((item: Brand) => item.main === true)
                     .slice(0, 5)
-                    .map((brand: any) => (
+                    .map((brand: Brand) => (
                       <div key={brand._id}>{brand.title + ' ' + `(main: ${brand.main})`}</div>
                     ))
                 : el[1]
-                    .filter((item: any) => item.main === false)
+                    .filter((item: Brand) => item.main === false)
                     .slice(0, 5)
-                    .map((brand: any) => (
+                    .map((brand: Brand) => (
                       <div key={brand._id}>{brand.title + ' ' + `(main: ${brand.main})`}</div>
                     ))}
             </div>
